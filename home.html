@@ -1,9 +1,3 @@
-<!--sscript*, style*,
-    aside,  div, span, code, 
-    pre, img, picture, iframe, audio, video, source, canvas*, svg*
-    optgroup, legend, datalist, 
-    select, option, details, summary, template, table, tr, td, th, 
-    caption, col, colgroup, figure, figcaption, -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,7 +18,7 @@
           <li>Projects</li>
           <li>Contact</li>
           <li>
-            <b><a href="/lab.html">LAB ONLY</a></b>
+            <b><a href="/lab.html">LAB ONLY PAGE</a></b>
           </li>
         </ol>
       </nav>
@@ -37,24 +31,97 @@
           <i>Hello!</i> I'm Ashley, a fourth-year
           <strong>Computer Science</strong> student at UC San Diego.
         </p>
+        <figure>
+          <img
+            src="https://library.ucsd.edu/news-events/wp-content/uploads/2020/08/Library-Blog-Post-Feature-1920x1080-50th-1.jpg"
+            alt="Geisel Library"
+            width="30%"
+          />
+          <figcaption>Geisel Library at UCSD</figcaption>
+        </figure>
       </section>
       <hr />
       <section>
         <h2>Experience</h2>
         <ul>
-          <li>Software Engineer Intern at <em>Wing</em></li>
+          <li>
+            Software Engineer Intern at <em>Wing</em><br />
+            <iframe src="https://wing.com/" title="Wing"></iframe>
+          </li>
           <li>Computer Science Tutor at <em>UC San Diego</em></li>
         </ul>
       </section>
       <hr />
       <section>
         <h2>Projects</h2>
-        <h3>Project 1</h3>
-        <h3>Project 2</h3>
+        <h3>DefIt</h3>
+        <template
+          >Demonstrating use of a template.
+          <ul>
+            Intro to Projects
+            <li>project info 1</li>
+            <li>project info 2</li>
+          </ul></template
+        >
+        <h3>Pomodoro Timer</h3>
       </section>
       <hr />
       <section>
         <h2>Contact</h2>
+        <table>
+          <caption>
+            Contact Info
+          </caption>
+          <colgroup>
+            <col span="2" />
+          </colgroup>
+          <tr>
+            <th>Email</th>
+            <td>xkou@ucsd.edu</td>
+          </tr>
+          <tr>
+            <th>LinkedIn</th>
+            <td>ashkou</td>
+          </tr>
+        </table>
+        <details>
+          <summary>You can also submit your inquiry here!</summary>
+          <form>
+            <fieldset>
+              <legend>Contact Form</legend>
+              <label
+                >I'm a <input list="occupation" />
+                <datalist id="occupation">
+                  <option>student</option>
+                  <option>professional</option>
+                  <option>recruiter</option></datalist
+                >.</label
+              ><br />
+              <label
+                >Select a topic to chat:
+                <select>
+                  <optgroup label="School">
+                    <option>CS classes</option>
+                    <option>GE requirements</option>
+                  </optgroup>
+                  <optgroup label="Work">
+                    <option>Career plan</option>
+                    <option>Full-time job</option>
+                    <option>Internship</option>
+                  </optgroup>
+                  <optgroup label="Others">
+                    <option>Something random</option>
+                  </optgroup>
+                </select></label
+              ><br />
+              <label>Name: <input /></label><br />
+              <label>Email: <input /></label><br />
+              <label>Message: </label><br />
+              <textarea>Leave your message here!</textarea><br />
+              <button type="submit">Submit</button>
+            </fieldset>
+          </form>
+        </details>
       </section>
     </main>
     <footer>Ashley Kou 2023</footer>

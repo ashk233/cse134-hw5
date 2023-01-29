@@ -3,6 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <title>Ashley's Lab Experiment</title>
+    <style>
+      table {
+        border-style: dotted;
+      }
+      /* styling span so that it looks a bit different... */
+      span {
+        color: blue;
+      }
+    </style>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -10,16 +19,72 @@
   </head>
   <body>
     <main>
-        <form>
-          <fieldset>
-            <label>Name: <input /></label><br />
-            <label>Email: <input /></label><br />
-            <label>Message: </label><br />
-            <textarea>Leave your message here!</textarea><br />
-            <button type="submit">Submit</button>
-          </fieldset>
-        </form>
-      </section>
+      <aside>
+        <nav>
+          <h1>
+            Back to
+            <ul>
+              <li><a href="/home.html">home</a></li>
+            </ul>
+          </h1>
+        </nav>
+      </aside>
+      <h2>
+        Media
+        <svg width="50" height="50">
+          <circle
+            cx="25"
+            cy="25"
+            r="20"
+            stroke="green"
+            stroke-width="2"
+            fill="yellow"
+          />
+        </svg>
+      </h2>
+      <pre>
+The following       are some <code>HTML</code> <span>experiments</span>.</pre
+      >
+      <div class="static">
+        <picture>
+          <source
+            srcset="https://i.redd.it/32vqf2dfl5a11.jpg"
+            media="(min-width: 1000px)"
+          />
+          <img
+            src="https://i.imgflip.com/4e3544.jpg"
+            alt="meme"
+            width="400"
+          /> </picture
+        ><br />
+        <canvas id="canvas" width="120" height="120">
+          I like this blue (#66ccff) :)
+        </canvas>
+        <script>
+          var c = document.getElementById("canvas");
+          var ctx = c.getContext("2d");
+          ctx.fillStyle = "#66ccff";
+          ctx.fillRect(10, 10, 100, 100);
+        </script>
+      </div>
+      <div class="dynamic">
+        <audio controls loop src="Richard Spasoff - Happiness IS.mp3">
+          Your browser does not support the <code>audio</code> element.
+        </audio>
+        <video
+          controls
+          src="01552_glass_light_leaks_19_-_wwwcutestockfootagecom (Original).mp4"
+          width="30%"
+        >
+          Your browser does not support the <code>video</code> element.
+        </video>
+        <a
+          href="https://cutestockfootage.com/stock-footage/8605/glass-light-leaks-19/"
+          >Video</a
+        >
+        courtesy of
+        <a href="https://cutestockfootage.com">Cute Stock Footage</a>
+      </div>
     </main>
   </body>
 </html>

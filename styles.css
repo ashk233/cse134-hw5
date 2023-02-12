@@ -5,8 +5,12 @@
   --primary-tx-selected: #ece0e0;
 }
 
+html {
+  scroll-padding-top: 5ch;
+}
+
 body {
-  margin: 0;
+  margin: 5ch auto;
   font-family: "Noto Sans", sans-serif;
 }
 
@@ -36,15 +40,14 @@ li a:hover {
   color: var(--primary-tx-selected);
 }
 
-main {
-  margin-top: 5ch;
-}
-
 @media screen and (max-width: 640px) {
   #navbar li {
     float: none;
   }
-  main {
-    margin-top: 20ch;
+  html {
+    scroll-padding-top: 20ch;
+  }
+  body {
+    margin: 20ch auto;
   }
 }

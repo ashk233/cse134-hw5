@@ -14,6 +14,10 @@ body {
   font-family: "Noto Sans", sans-serif;
 }
 
+main {
+  padding: 0 20px;
+}
+
 #navbar {
   list-style-type: none;
   margin: 0;
@@ -33,6 +37,7 @@ li a {
   padding: 1ch 1em;
   color: var(--primary-text);
   text-decoration: none;
+  transition: background-color 1s;
 }
 
 li a:hover {
@@ -50,4 +55,27 @@ li a:hover {
   body {
     margin: 20ch auto;
   }
+}
+
+@keyframes shake {
+  0% {
+    transform: skewX(0deg);
+  }
+  25% {
+    transform: skewX(25deg);
+  }
+  50% {
+    transform: skewX(-25deg);
+  }
+  100% {
+    transform: skewX(0deg);
+  }
+}
+
+h1 {
+  text-align: center;
+  animation-name: shake;
+  animation-duration: 2s;
+  /* animation-iteration-count: infinite; */
+  animation-direction: alternate;
 }

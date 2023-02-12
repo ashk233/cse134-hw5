@@ -1,0 +1,41 @@
+:root {
+  --primary-blue: #6cb4eb;
+  --primary-text: #1c1a1a;
+  --primary-bg-selected: #244c6b;
+  --primary-tx-selected: #ece0e0;
+}
+
+body {
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+}
+
+#navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: var(--primary-blue);
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+#navbar li {
+  float: left;
+}
+
+li a {
+  display: block;
+  padding: 1ch 1em;
+  color: var(--primary-text);
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: var(--primary-bg-selected);
+  color: var(--primary-tx-selected);
+}
+
+main {
+  margin-top: 5ch;
+}

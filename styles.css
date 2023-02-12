@@ -39,3 +39,12 @@ li a:hover {
 main {
   margin-top: 5ch;
 }
+
+@media screen and (max-width: 640px) {
+  #navbar li {
+    float: none;
+  }
+  main {
+    margin-top: 20ch;
+  }
+}

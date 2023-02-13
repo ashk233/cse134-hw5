@@ -5,6 +5,10 @@
   --primary-tx-selected: #ece0e0;
 }
 
+* {
+  backface-visibility: hidden;
+}
+
 html {
   scroll-padding-top: 5ch;
 }
@@ -12,6 +16,7 @@ html {
 body {
   margin: 5ch auto;
   font-family: "Noto Sans", sans-serif;
+  line-height: 1.6;
 }
 
 main {
@@ -47,42 +52,44 @@ li a:hover {
 
 @keyframes shake {
   0% {
-    transform: skewX(0deg);
+    transform: rotate(0deg);
   }
   25% {
-    transform: skewX(25deg);
+    transform: rotate(15deg);
   }
   50% {
-    transform: skewX(-25deg);
+    transform: rotate(-15deg);
   }
   100% {
-    transform: skewX(0deg);
+    transform: rotate(0deg);
   }
 }
 
 h1 {
   text-align: center;
+}
+
+figure {
+  flex-basis: 300px;
+  max-width: 100%;
   animation-name: shake;
   animation-duration: 2s;
   animation-iteration-count: 3;
   animation-direction: alternate;
 }
-
-figure {
-  flex-basis: 200px;
-  max-width: 100%;
-}
 figure img {
   max-width: 100%;
-  max-height: 200px;
+  max-height: 300px;
 }
 
 .flex-container {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #intro {
-  flex-basis: calc(100% - 200px);
+  flex-basis: calc(100% - 300px);
   max-width: 100%;
 }
 
@@ -91,7 +98,7 @@ figure img {
     float: none;
   }
   html {
-    scroll-padding-top: 20ch;
+    scroll-padding-top: 24ch;
   }
   body {
     margin: 20ch auto;

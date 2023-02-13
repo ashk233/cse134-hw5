@@ -14,7 +14,7 @@ html {
 }
 
 body {
-  margin: 5ch auto;
+  margin: 5ch auto auto auto;
   font-family: "Noto Sans", sans-serif;
   line-height: 1.6;
 }
@@ -101,7 +101,7 @@ figure img {
     scroll-padding-top: 24ch;
   }
   body {
-    margin: 20ch auto;
+    margin: 20ch auto auto auto;
   }
   .flex-container {
     display: flex;

@@ -45,18 +45,6 @@ li a:hover {
   color: var(--primary-tx-selected);
 }
 
-@media screen and (max-width: 640px) {
-  #navbar li {
-    float: none;
-  }
-  html {
-    scroll-padding-top: 20ch;
-  }
-  body {
-    margin: 20ch auto;
-  }
-}
-
 @keyframes shake {
   0% {
     transform: skewX(0deg);
@@ -78,4 +66,42 @@ h1 {
   animation-duration: 2s;
   /* animation-iteration-count: infinite; */
   animation-direction: alternate;
+}
+
+figure {
+  flex-basis: 200px;
+  max-width: 100%;
+}
+figure img {
+  max-width: 100%;
+  max-height: 200px;
+}
+
+.flex-container {
+  display: flex;
+}
+
+#intro {
+  flex-basis: calc(100% - 200px);
+  max-width: 100%;
+}
+
+@media screen and (max-width: 640px) {
+  #navbar li {
+    float: none;
+  }
+  html {
+    scroll-padding-top: 20ch;
+  }
+  body {
+    margin: 20ch auto;
+  }
+  .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #intro {
+    flex-basis: 100%;
+  }
 }

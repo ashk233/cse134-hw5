@@ -5,10 +5,6 @@
   --primary-tx-selected: #ece0e0;
 }
 
-* {
-  backface-visibility: hidden;
-}
-
 html {
   scroll-padding-top: 5ch;
 }
@@ -69,6 +65,27 @@ h1 {
   text-align: center;
 }
 
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-container-start {
+  display: flex;
+  overflow: auto;
+}
+
+.item {
+  width: 100%;
+  min-width: 300px;
+  background-color: var(--primary-blue);
+  box-shadow: 5px 5px 5px var(--primary-bg-selected);
+  border-radius: 12px;
+  margin: 1rem;
+  padding: 1rem;
+}
+
 figure {
   flex-basis: 300px;
   max-width: 100%;
@@ -80,12 +97,6 @@ figure {
 figure img {
   max-width: 100%;
   max-height: 300px;
-}
-
-.flex-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 #intro {
@@ -110,5 +121,11 @@ figure img {
 
   #intro {
     flex-basis: 100%;
+  }
+
+  .flex-container-start {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }

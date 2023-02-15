@@ -192,39 +192,58 @@
           </tr>
         </table>
         <details>
-          <summary>You can also submit your inquiry here!</summary>
+          <summary>Submit your inquiry here!</summary>
           <form>
             <fieldset>
               <legend>Contact Form</legend>
-              <label
-                >I'm a <input list="occupation" />
-                <datalist id="occupation">
-                  <option>student</option>
-                  <option>professional</option>
-                  <option>recruiter</option></datalist
-                >.</label
-              ><br />
-              <label
-                >Select a topic to chat:
-                <select>
-                  <optgroup label="School">
-                    <option>CS classes</option>
-                    <option>GE requirements</option>
-                  </optgroup>
-                  <optgroup label="Work">
-                    <option>Career plan</option>
-                    <option>Full-time job</option>
-                    <option>Internship</option>
-                  </optgroup>
-                  <optgroup label="Others">
-                    <option>Something random</option>
-                  </optgroup>
-                </select></label
-              ><br />
-              <label>Name: <input /></label><br />
-              <label>Email: <input /></label><br />
-              <label>Message: </label><br />
-              <textarea>Leave your message here!</textarea><br />
+              <table id="contact-form">
+                <tr>
+                  <td class="label">
+                    <label for="name">Name: </label>
+                  </td>
+                  <td>
+                    <input type="text" id="name" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="label">
+                    <label for="email">Email:</label>
+                  </td>
+                  <td>
+                    <input type="email" id="email" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="label">
+                    <label for="subject">Subject: </label>
+                  </td>
+                  <td>
+                    <select id="subject">
+                      <optgroup label="School">
+                        <option value="CS">CS classes</option>
+                        <option value="GE">GE requirements</option>
+                      </optgroup>
+                      <optgroup label="Work">
+                        <option value="career">Career plan</option>
+                        <option value="full-time">Full-time job</option>
+                        <option value="internship">Internship</option>
+                      </optgroup>
+                      <optgroup label="Others">
+                        <option value="other">Something random</option>
+                      </optgroup>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="label"><label for="message">Message: </label></td>
+                  <td>
+                    <textarea
+                      id="message"
+                      placeholder="Leave your message here!"
+                    ></textarea>
+                  </td>
+                </tr>
+              </table>
               <button type="submit">Submit</button>
             </fieldset>
           </form>

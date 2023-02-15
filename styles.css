@@ -69,7 +69,6 @@ h1 {
 .flex-container {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .flex-container-start {
@@ -79,12 +78,13 @@ h1 {
 
 .item {
   width: 100%;
-  min-width: 300px;
+  min-width: 250px;
   background-color: var(--primary-blue);
   box-shadow: 5px 5px 5px var(--primary-bg-selected);
   border-radius: 12px;
   margin: 1rem;
   padding: 1rem;
+  overflow: auto;
 }
 
 figure {
@@ -126,7 +126,6 @@ figure img {
 
   .flex-container-start {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
   }
 }

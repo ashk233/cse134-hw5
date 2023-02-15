@@ -164,6 +164,7 @@ button {
 button:hover {
   background-color: var(--primary-bg-selected);
   color: var(--primary-tx-selected);
+  cursor: pointer;
 }
 
 @media screen and (max-width: 640px) {

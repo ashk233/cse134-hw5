@@ -85,6 +85,7 @@ h1 {
   background-color: var(--primary-blue);
   box-shadow: 5px 5px 5px var(--primary-bg-selected);
   border-radius: 12px;
+  margin: 1rem;
   padding: 1rem;
   overflow: auto;
   box-sizing: border-box;

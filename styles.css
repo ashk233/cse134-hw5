@@ -114,6 +114,7 @@ details {
   background-color: var(--light-blue);
   border-radius: 5px;
   padding: 1ch 1ch;
+  overflow: auto;
 }
 
 summary {

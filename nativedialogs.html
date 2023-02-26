@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HW 4 Part 1</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.1/purify.min.js"></script>
+  </head>
+  <body>
+    <h1>Native Dialogs</h1>
+    <button id="alert">Alert</button>
+    <button id="confirm">Confirm</button>
+    <button id="prompt">Prompt</button>
+    <button id="safer_prompt">Safer Prompt</button>
+    <hr />
+    <output id="output"></output>
+    <script>
+      document.getElementById("alert").addEventListener("click", () => {
+        alert("Alert pressed!");
+      });
+      const output = document.getElementById("output");
+      function confirmCheck() {
+        let confirmText = "Do you confirm this?";
+        output.innerHTML =
+          "The value returned by the confirm method is: " +
+          confirm(confirmText);
+      }
+      document
+        .getElementById("confirm")
+        .addEventListener("click", confirmCheck);
+      document.getElementById("prompt").addEventListener("click", () => {
+        let input = prompt("What's your name?");
+        if (input != null) {
+          output.innerHTML = "Prompt result: " + input;
+        } else {
+          output.innerHTML = "User didn't enter anything.";
+        }
+      });
+      document.getElementById("safer_prompt").addEventListener("click", () => {
+        let input = prompt("What's your name?");
+        let sanitized = DOMPurify.sanitize(input);
+        if (input != null) {
+          output.innerHTML = "Prompt result: " + sanitized;
+        } else {
+          output.innerHTML = "User didn't enter anything.";
+        }
+      });
+    </script>
+  </body>
+</html>

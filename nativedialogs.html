@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>HW 4 Part 1</title>
+    <title>HW 4</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.1/purify.min.js"></script>
   </head>
   <body>
@@ -15,34 +15,46 @@
     <output id="output"></output>
     <script>
       document.getElementById("alert").addEventListener("click", () => {
-        alert("Alert pressed!");
+        output.innerHTML = "";
+        setTimeout(function () {
+          alert("Alert pressed!");
+        }, 0);
       });
       const output = document.getElementById("output");
       function confirmCheck() {
-        let confirmText = "Do you confirm this?";
-        output.innerHTML =
-          "The value returned by the confirm method is: " +
-          confirm(confirmText);
+        output.innerHTML = "";
+        setTimeout(function () {
+          let confirmText = "Do you confirm this?";
+          output.innerHTML =
+            "The value returned by the confirm method is: " +
+            confirm(confirmText);
+        }, 0);
       }
       document
         .getElementById("confirm")
         .addEventListener("click", confirmCheck);
       document.getElementById("prompt").addEventListener("click", () => {
-        let input = prompt("What's your name?");
-        if (input != null) {
-          output.innerHTML = "Prompt result: " + input;
-        } else {
-          output.innerHTML = "User didn't enter anything.";
-        }
+        output.innerHTML = "";
+        setTimeout(function () {
+          let input = prompt("What's your name?");
+          if (input != null) {
+            output.innerHTML = "Prompt result: " + input;
+          } else {
+            output.innerHTML = "User didn't enter anything.";
+          }
+        }, 0);
       });
       document.getElementById("safer_prompt").addEventListener("click", () => {
-        let input = prompt("What's your name?");
-        let sanitized = DOMPurify.sanitize(input);
-        if (input != null) {
-          output.innerHTML = "Prompt result: " + sanitized;
-        } else {
-          output.innerHTML = "User didn't enter anything.";
-        }
+        output.innerHTML = "";
+        setTimeout(function () {
+          let input = prompt("What's your name?");
+          let sanitized = DOMPurify.sanitize(input);
+          if (input != null) {
+            output.innerHTML = "Prompt result: " + sanitized;
+          } else {
+            output.innerHTML = "User didn't enter anything.";
+          }
+        }, 0);
       });
     </script>
   </body>

@@ -31,11 +31,9 @@
     </style>
     <script type="module">
       import { createDialog, showDialog } from "./customdialog.js";
-      createDialog("confirm");
-      createDialog("prompt");
-      createDialog("alert");
       const types = ["alert", "prompt", "confirm"];
       for (let x in types) {
+        createDialog(`${types[x]}`);
         document
           .getElementById(`${types[x]}-button`)
           .addEventListener("click", () => {

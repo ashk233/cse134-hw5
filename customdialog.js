@@ -3,7 +3,6 @@ export function createDialog(type) {
   let clone = temp.content.cloneNode(true);
   clone.querySelector("div").id = type;
   let p = clone.querySelector("p");
-  let modalContent = p.parentNode;
   let ok = clone.querySelectorAll("button")[0];
   let cancel = clone.querySelectorAll("button")[1];
   ok.id = `${type}-ok`;
@@ -15,9 +14,7 @@ export function createDialog(type) {
     // prompt
     p.textContent = "What is your name?";
     p.appendChild(document.createElement("br"));
-
     p.appendChild(document.createElement("input"));
-    // modalContent.insertBefore(input, p.nextSibling);
   } else {
     // alert
     cancel.remove();

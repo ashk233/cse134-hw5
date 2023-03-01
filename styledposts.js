@@ -1,25 +1,11 @@
-export const myStorage = window.localStorage;
-export const modal = document.getElementById("post-dialog");
-export const postForm = document.getElementById("post-form");
-export const postList = document.getElementById("post-list");
-export const noPost = document.getElementById("no-post");
-export const prePopulateData = [
-  {
-    title: "Post 1",
-    date: "2023-03-01",
-    summary: "This is my first blog post!",
-  },
-  {
-    title: "Post 2",
-    date: "2023-03-02",
-    summary: "This is my second blog post!",
-  },
-  {
-    title: "Post 3",
-    date: "2023-03-03",
-    summary: "This is my third blog post!",
-  },
-];
+import {
+  myStorage,
+  modal,
+  postForm,
+  postList,
+  noPost,
+  prePopulateData,
+} from "/blog.js";
 
 export function loadLocalPosts() {
   //pre-populate the data store with a set array
@@ -30,18 +16,9 @@ export function loadLocalPosts() {
   if (posts.length > 0) {
     document.getElementById("no-post").style.display = "none";
     for (let i = 0; i < posts.length; i++) {
-      createPost(posts[i]);
+      createStyledPost(posts[i]);
     }
   }
-}
-
-export function handleAdd() {
-  document.getElementById("action").value = "submit";
-  modal.showModal();
-}
-
-export function formCancel() {
-  modal.close();
 }
 
 export function formSubmit(action) {
@@ -58,7 +35,7 @@ export function formSubmit(action) {
 
   if (action === "submit") {
     // submit new post
-    createPost(dataEntries, postList.childElementCount);
+    createStyledPost(dataEntries, postList.childElementCount);
     localPosts.push(dataEntries);
   } else {
     // edit current post
@@ -77,7 +54,7 @@ function editPost(post, postItem) {
   entries[2].innerHTML = post.summary;
 }
 
-function createPost(post) {
+function createStyledPost(post) {
   const temp = document.getElementById("post-temp");
   let clone = temp.content.cloneNode(true);
   let postItem = clone.querySelector("li");
@@ -85,7 +62,7 @@ function createPost(post) {
   entries[0].innerHTML = post.title;
   entries[1].innerHTML = post.date;
   entries[2].innerHTML = post.summary;
-  let editButton = clone.querySelectorAll("button")[0];
+  let editButton = clone.querySelectorAll("i")[0];
   editButton.addEventListener("click", () => {
     document.getElementById("title").value = post.title;
     document.getElementById("date").value = post.date;
@@ -97,7 +74,7 @@ function createPost(post) {
 
     modal.showModal();
   });
-  let deleteButton = clone.querySelectorAll("button")[1];
+  let deleteButton = clone.querySelectorAll("i")[1];
   deleteButton.addEventListener("click", () => {
     const localPosts = JSON.parse(myStorage.getItem("a-post-list"));
     let array = postItem.parentNode.children;

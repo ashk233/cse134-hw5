@@ -4,48 +4,113 @@
     <meta charset="UTF-8" />
     <title>Simple CRUD</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.1/purify.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,500&display=swap"
+      rel="stylesheet"
+    />
     <script type="module">
-      import {
-        loadLocalPosts,
-        handleAdd,
-        formCancel,
-        formSubmit,
-      } from "./blog.js";
-      window.addEventListener("DOMContentLoaded", () => {
-        loadLocalPosts();
-      });
+      import { handleAdd, formCancel } from "./blog.js";
+
       document.getElementById("add").addEventListener("click", () => {
         handleAdd();
       });
       document.getElementById("cancel").addEventListener("click", () => {
         formCancel();
       });
+    </script>
+    <script type="module">
+      import { loadLocalPosts, formSubmit } from "./styledposts.js";
+
+      window.addEventListener("DOMContentLoaded", () => {
+        loadLocalPosts();
+      });
       document.getElementById("post-form").addEventListener("submit", (e) => {
         formSubmit(document.getElementById("action").value);
       });
     </script>
+    <style>
+      :root {
+        --primary-blue: #6cb4eb;
+        --primary-text: #1c1a1a;
+        --primary-bg-selected: #244c6b;
+        --primary-tx-selected: #ece0e0;
+        --light-blue: #add5f4;
+      }
+      body {
+        font-family: "Noto Sans", sans-serif;
+        line-height: 1.6;
+        background-color: var(--light-blue);
+      }
+      button {
+        background-color: var(--primary-blue);
+        border: 1px solid var(--primary-bg-selected);
+        border-radius: 5px;
+        color: var(--primary-text);
+        padding: 1ch 2ch;
+        font-size: 1rem;
+        text-align: center;
+      }
+
+      button:hover {
+        background-color: var(--primary-bg-selected);
+        color: var(--primary-tx-selected);
+        cursor: pointer;
+      }
+      .label {
+        vertical-align: top;
+      }
+      .date {
+        font-style: italic;
+      }
+      textarea {
+        height: 75px;
+        resize: none;
+      }
+    </style>
   </head>
   <body>
-    <h1>Blog Posts</h1>
+    <h1 style="text-align: center">Blog Posts</h1>
     <p id="no-post">No post yet!</p>
     <ul id="post-list"></ul>
-    <button id="add">Add</button>
+    <button id="add" style="float: right; margin-right: 2ch">New Post</button>
     <template id="post-temp">
       <li>
         <span class="title">post 1</span> (<span class="date">02/28</span>):
-        <span class="summary">testing</span> <button>Edit</button
-        ><button>Delete</button>
+        <span class="summary">testing</span>
+        <i
+          class="fa fa-pencil-square-o"
+          aria-hidden="true"
+          style="color: darkcyan"
+        ></i>
+        <i class="fa fa-trash" aria-hidden="true" style="color: darkred"></i>
       </li>
     </template>
     <dialog id="post-dialog">
       <form id="post-form" method="dialog">
-        <label for="title">Title:</label>
-        <input id="title" name="title" required /><br />
-        <label for="date">Date:</label>
-        <input id="date" name="date" type="date" required /><br />
-        <label for="summary">Summary:</label>
-        <input id="action" value="submit" hidden />
-        <textarea id="summary" name="summary" required></textarea><br />
+        <table>
+          <tr>
+            <td class="label"><label for="title">Title:</label></td>
+            <td><input id="title" name="title" required /><br /></td>
+          </tr>
+          <tr>
+            <td class="label"><label for="date">Date:</label></td>
+            <td><input id="date" name="date" type="date" required /><br /></td>
+          </tr>
+          <tr>
+            <td class="label"><label for="summary">Summary:</label></td>
+            <td>
+              <textarea id="summary" name="summary" required></textarea><br />
+            </td>
+          </tr>
+
+          <input id="action" value="submit" hidden />
+        </table>
         <button id="cancel" value="false" type="reset">Cancel</button>
         <button id="confirmBtn" value="true" type="submit">Ok</button>
       </form>

@@ -1,60 +1,47 @@
 export function createDialog(type) {
-  let output = document.getElementById("output");
-  const temp = document.getElementById("dialog-temp");
+  const output = document.getElementById("output");
+  const temp = document.getElementById("custom-dialog");
   let clone = temp.content.cloneNode(true);
-  clone.querySelector("div").id = type;
+  let dialog = clone.querySelector("dialog");
+  dialog.id = type;
+  let form = clone.querySelector("form");
   let p = clone.querySelector("p");
-  let ok = clone.querySelectorAll("button")[0];
-  let cancel = clone.querySelectorAll("button")[1];
+  let cancel = clone.querySelectorAll("button")[0];
+  let ok = clone.querySelectorAll("button")[1];
   ok.id = `${type}-ok`;
-  if (type == "alert") {
-    // alert
+  if (type === "alert") {
     cancel.remove();
-    ok.addEventListener("click", () => {
-      output.innerHTML = "";
-      let modal = document.getElementById(type);
-      modal.style.display = "none";
-    });
   } else {
     cancel.id = `${type}-cancel`;
     if (type === "confirm") {
       // confirm
       p.textContent = "Do you confirm this?";
-      ok.addEventListener("click", () => {
-        let modal = document.getElementById(type);
-        modal.style.display = "none";
-        output.innerHTML = "Confirm result: true";
-      });
-      cancel.addEventListener("click", () => {
-        let modal = document.getElementById(type);
-        modal.style.display = "none";
-        output.innerHTML = "Confirm result: false";
-      });
     } else if (type === "prompt") {
       // prompt
       p.textContent = "What is your name?";
       p.appendChild(document.createElement("br"));
       let input = document.createElement("input");
       p.appendChild(input);
-      ok.addEventListener("click", () => {
-        let modal = document.getElementById(type);
-        modal.style.display = "none";
-        let sanitized = DOMPurify.sanitize(input.value);
-        output.innerHTML = `Prompt result: ${sanitized}`;
-        input.value = "";
-      });
-      cancel.addEventListener("click", () => {
-        let modal = document.getElementById(type);
-        modal.style.display = "none";
-        output.innerHTML = "User didn't enter anything.";
-        input.value = "";
-      });
     }
   }
+  dialog.addEventListener("close", () => {
+    if (type === "alert") {
+      output.innerHTML = "";
+    } else if (type === "confirm") {
+      output.innerHTML = `Cofirm result: ${dialog.returnValue}`;
+    } else {
+      let result = DOMPurify.sanitize(dialog.querySelector("input").value);
+      output.innerHTML =
+        dialog.returnValue === "false"
+          ? "User didn't enter anything."
+          : `Prompt result: ${result}`;
+      form.reset();
+    }
+  });
   document.body.appendChild(clone);
 }
 
 export function showDialog(type) {
-  let modal = document.getElementById(type);
-  modal.style.display = "flex";
+  let dialog = document.getElementById(type);
+  dialog.showModal();
 }

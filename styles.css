@@ -49,6 +49,10 @@ li a:hover {
   color: var(--primary-tx-selected);
 }
 
+#menu {
+  display: none;
+}
+
 @keyframes shake {
   0% {
     transform: rotate(0deg);
@@ -179,14 +183,30 @@ button:hover {
 }
 
 @media screen and (max-width: 640px) {
-  #navbar li {
+  #navbar li:not(:first-child) {
+    display: none;
+  }
+  #navbar li:last-child {
+    float: right;
+    display: block;
+  }
+
+  .responsive #menu {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  #navbar.responsive li {
+    display: block;
     float: none;
   }
+
   html {
     scroll-padding-top: 24ch;
   }
   body {
-    margin: 20ch auto auto auto;
+    margin: 5ch auto auto auto;
   }
   .flex-container {
     display: flex;
@@ -204,5 +224,10 @@ button:hover {
   .flex-container-start {
     display: flex;
     flex-wrap: wrap;
+  }
+
+  #menu {
+    display: block;
+    float: right;
   }
 }

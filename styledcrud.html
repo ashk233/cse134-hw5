@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simple CRUD</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.1/purify.min.js"></script>
+    <style>
+      .modal {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+      .modal-content {
+        background-color: white;
+        border: 2px solid black;
+        padding: 2ch;
+      }
+      .btn-group {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+      }
+    </style>
+    <script type="module">
+      import {
+        loadLocalPosts,
+        handleAdd,
+        formCancel,
+        formSubmit,
+      } from "./blog.js";
+      window.addEventListener("DOMContentLoaded", () => {
+        loadLocalPosts();
+      });
+      document.getElementById("add").addEventListener("click", () => {
+        handleAdd();
+      });
+      document.getElementById("cancel").addEventListener("click", () => {
+        formCancel();
+      });
+      document.getElementById("post-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        formSubmit(document.getElementById("action").value);
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Blog Posts</h1>
+    <p id="no-post">No post yet!</p>
+    <ul id="post-list">
+      <!-- <li>
+        <span class="title">post 1</span> (<span class="date">02/28</span>):
+        <span class="summary">testing</span> <button>Edit</button
+        ><button>Delete</button>
+      </li> -->
+    </ul>
+    <button id="add">Add</button>
+    <template id="post-temp">
+      <li>
+        <span class="title">post 1</span> (<span class="date">02/28</span>):
+        <span class="summary">testing</span> <button>Edit</button
+        ><button>Delete</button>
+      </li>
+    </template>
+    <div id="post-modal" class="modal">
+      <div class="modal-content">
+        <form id="post-form">
+          <label for="title">Title:</label>
+          <input id="title" name="title" required /><br />
+          <label for="date">Date:</label>
+          <input id="date" name="date" type="date" required /><br />
+          <label for="summary">Summary:</label>
+          <input id="action" value="submit" hidden />
+          <textarea id="summary" name="summary" required></textarea><br />
+          <input type="button" value="Cancel" id="cancel" />
+          <input type="submit" id="submit" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

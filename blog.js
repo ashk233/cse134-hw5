@@ -1,5 +1,6 @@
 const myStorage = window.localStorage;
-const modal = document.getElementById("post-modal");
+const modal = document.getElementById("post-dialog");
+const postForm = document.getElementById("post-form");
 const postList = document.getElementById("post-list");
 const noPost = document.getElementById("no-post");
 const prePopulateData = [
@@ -36,11 +37,11 @@ export function loadLocalPosts() {
 
 export function handleAdd() {
   document.getElementById("action").value = "submit";
-  modal.style.display = "flex";
+  modal.showModal();
 }
 
 export function formCancel() {
-  modal.style.display = "none";
+  modal.close();
 }
 
 export function formSubmit(action) {
@@ -49,8 +50,7 @@ export function formSubmit(action) {
   noPost.style.display = "none";
 
   // get data about new post
-  const form = document.getElementById("post-form");
-  const formData = new FormData(form);
+  const formData = new FormData(postForm);
   var dataEntries = {};
   formData.forEach(function (value, key) {
     dataEntries[key] = DOMPurify.sanitize(value);
@@ -67,8 +67,8 @@ export function formSubmit(action) {
     localPosts.splice(index, 1, dataEntries);
   }
   myStorage.setItem("a-post-list", JSON.stringify(localPosts));
-  form.reset();
-  modal.style.display = "none";
+  postForm.reset();
+  modal.close();
 }
 
 function editPost(post, postItem) {
@@ -96,7 +96,7 @@ function createPost(post) {
     let index = [].indexOf.call(array, postItem);
     document.getElementById("action").value = index;
 
-    modal.style.display = "flex";
+    modal.showModal();
   });
   let deleteButton = clone.querySelectorAll("button")[1];
   deleteButton.addEventListener("click", () => {

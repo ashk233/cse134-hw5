@@ -45,7 +45,6 @@
       body {
         font-family: "Noto Sans", sans-serif;
         line-height: 1.6;
-        background-color: var(--light-blue);
       }
       button {
         background-color: var(--primary-blue);
@@ -75,9 +74,12 @@
     </style>
   </head>
   <body>
-    <h1 style="text-align: center">Blog Posts</h1>
-    <p id="no-post">No post yet!</p>
-    <ul id="post-list"></ul>
+    <h1 style="text-align: center">BLOG POSTS</h1>
+    <p id="no-post" style="text-align: center">There's no post yet....</p>
+    <ul
+      id="post-list"
+      style="background: var(--light-blue); border-radius: 10px"
+    ></ul>
     <button id="add" style="float: right; margin-right: 2ch">New Post</button>
     <template id="post-temp">
       <li>

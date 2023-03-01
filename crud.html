@@ -30,7 +30,15 @@
       }
     </style>
     <script type="module">
-      import { handleAdd, formCancel, formSubmit } from "./blog.js";
+      import {
+        loadLocalPosts,
+        handleAdd,
+        formCancel,
+        formSubmit,
+      } from "./blog.js";
+      window.addEventListener("DOMContentLoaded", () => {
+        loadLocalPosts();
+      });
       document.getElementById("add").addEventListener("click", () => {
         handleAdd();
       });

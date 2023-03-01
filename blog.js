@@ -2,20 +2,36 @@ const myStorage = window.localStorage;
 const modal = document.getElementById("post-modal");
 const postList = document.getElementById("post-list");
 const noPost = document.getElementById("no-post");
+const prePopulateData = [
+  {
+    title: "Post 1",
+    date: "2023-03-01",
+    summary: "This is my first blog post!",
+  },
+  {
+    title: "Post 2",
+    date: "2023-03-02",
+    summary: "This is my second blog post!",
+  },
+  {
+    title: "Post 3",
+    date: "2023-03-03",
+    summary: "This is my third blog post!",
+  },
+];
 
 export function loadLocalPosts() {
-  //   window.addEventListener("DOMContentLoaded", () => {
+  //pre-populate the data store with a set array
   if (!myStorage.getItem("a-post-list")) {
-    myStorage.setItem("a-post-list", "[]");
+    myStorage.setItem("a-post-list", JSON.stringify(prePopulateData));
   }
   const posts = JSON.parse(myStorage.getItem("a-post-list"));
   if (posts.length > 0) {
     document.getElementById("no-post").style.display = "none";
     for (let i = 0; i < posts.length; i++) {
-      createPost(tasks[i]);
+      createPost(posts[i]);
     }
   }
-  //   });
 }
 
 export function handleAdd() {
@@ -28,6 +44,7 @@ export function formCancel() {
 }
 
 export function formSubmit(action) {
+  const localPosts = JSON.parse(myStorage.getItem("a-post-list"));
   // remove no post message
   noPost.style.display = "none";
 
@@ -38,18 +55,18 @@ export function formSubmit(action) {
   formData.forEach(function (value, key) {
     dataEntries[key] = DOMPurify.sanitize(value);
   });
-  var json = JSON.stringify(dataEntries);
 
-  console.log(dataEntries);
-  console.log(postList.childElementCount);
   if (action === "submit") {
     // submit new post
     createPost(dataEntries, postList.childElementCount);
+    localPosts.push(dataEntries);
   } else {
-    console.log(document.getElementById("action").value);
     // edit current post
-    editPost(dataEntries, postList.children[Number(action)]);
+    var index = Number(action);
+    editPost(dataEntries, postList.children[index]);
+    localPosts.splice(index, 1, dataEntries);
   }
+  myStorage.setItem("a-post-list", JSON.stringify(localPosts));
   form.reset();
   modal.style.display = "none";
 }
@@ -70,20 +87,26 @@ function createPost(post) {
   entries[1].innerHTML = post.date;
   entries[2].innerHTML = post.summary;
   let editButton = clone.querySelectorAll("button")[0];
-  editButton.addEventListener("click", (e) => {
+  editButton.addEventListener("click", () => {
     document.getElementById("title").value = post.title;
     document.getElementById("date").value = post.date;
     document.getElementById("summary").value = post.summary;
 
-    let array = e.target.parentNode.parentNode.children;
-    let index = [].indexOf.call(array, e.target.parentNode);
+    let array = postItem.parentNode.children;
+    let index = [].indexOf.call(array, postItem);
     document.getElementById("action").value = index;
 
     modal.style.display = "flex";
   });
   let deleteButton = clone.querySelectorAll("button")[1];
   deleteButton.addEventListener("click", () => {
+    const localPosts = JSON.parse(myStorage.getItem("a-post-list"));
+    let array = postItem.parentNode.children;
+    let index = [].indexOf.call(array, postItem);
+    localPosts.splice(index, 1);
+    myStorage.setItem("a-post-list", JSON.stringify(localPosts));
     postItem.remove();
+
     if (postList.childElementCount == 0) {
       noPost.style.display = "block";
     }

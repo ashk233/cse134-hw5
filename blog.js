@@ -68,7 +68,6 @@ export function formSubmit(action) {
   }
   myStorage.setItem("a-post-list", JSON.stringify(localPosts));
   postForm.reset();
-  modal.close();
 }
 
 function editPost(post, postItem) {

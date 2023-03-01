@@ -37,8 +37,8 @@
         document
           .getElementById(`${types[x]}-button`)
           .addEventListener("click", () => {
-            let modal = document.getElementById(types[x]);
-            modal.style.display = "flex";
+            document.getElementById("output").innerHTML = "";
+            showDialog(types[x]);
           });
       }
     </script>

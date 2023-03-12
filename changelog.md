@@ -1,2 +1,0 @@
-1. Implemeted a hamburger menu which shows on small screens (less than 640px). I added it because this is an essential component of adaptive design. I didn't do this in the previous homework since it is easier to do with JavaScript.
-2. Add Google Analytics to track user activity. This 3rd party script would be helpful since it can provide insights about user experience, such as number of page views, scrolls, outbound clicks, form interactions. These data would help me improve my site for the users.

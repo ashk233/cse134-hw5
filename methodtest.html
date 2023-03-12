@@ -21,7 +21,7 @@
               <label for="article_name">Article Name:</label>
             </td>
             <td>
-              <input type="text" id="article_name" required />
+              <input type="text" id="article_name" />
             </td>
           </tr>
           <tr>
@@ -29,10 +29,10 @@
               <label for="article_body">Subject: </label>
             </td>
             <td>
-              <textarea id="article_body" required></textarea>
+              <textarea id="article_body"></textarea>
             </td>
           </tr>
-          <input hidden id="date" type="date" />
+          <input hidden id="date" />
         </table>
         <button id="postBtn">Post</button>
         <button id="getBtn">Get</button>
@@ -42,5 +42,54 @@
     </form>
     <hr />
     <output id="response">No response yet.</output>
+    <script type="module">
+      window.addEventListener("DOMContentLoaded", init);
+
+      function init() {
+        let postBtn;
+        let getBtn;
+        let putBtn;
+        let deleteBtn;
+
+        postBtn = document
+          .getElementById("postBtn")
+          .addEventListener("click", postMethod);
+        getBtn = document
+          .getElementById("getBtn")
+          .addEventListener("click", getMethod);
+        putBtn = document
+          .getElementById("putBtn")
+          .addEventListener("click", putMethod);
+        deleteBtn = document
+          .getElementById("deleteBtn")
+          .addEventListener("click", deleteMethod);
+      }
+
+      function postMethod() {
+        let xhr = new XMLHttpRequest();
+
+        // forming the law of 3 request line method, URL, and optional async/sync flag
+        xhr.open("POST", "https://httpbin.org/post");
+
+        // // a header we could use on the server-side to determine if from JS or if from a form
+        // xhr.setRequestHeader('X-Sent-By','javascript');
+
+        // the standard encoding
+        xhr.setRequestHeader(
+          "Content-Type",
+          "application/x-www-form-urlencoded"
+        );
+
+        xhr.onload = function () {
+          // TODO: refactor this to read the JSON and display the message instead of the raw JSON
+
+          // how dangerous is it to just jam this content in here like this?
+          document.querySelector("output").innerHTML = xhr.responseText;
+        };
+
+        // note the creation of the message body manually and proper encoding here
+        xhr.send(`message=${encodeURIComponent(new Date())}`);
+      }
+    </script>
   </body>
 </html>

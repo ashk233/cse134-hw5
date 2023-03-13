@@ -1,5 +1,3 @@
-const deleteUrl = "https://httpbin.org/delete";
-
 const postBtn = document.getElementById("postBtn");
 const getBtn = document.getElementById("getBtn");
 const putBtn = document.getElementById("putBtn");
@@ -18,8 +16,10 @@ export async function postArticle() {
 
   const response = await fetch(postUrl, {
     method: "POST",
+    mode: "cors",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
+      "X-Sent-By": "javascript",
     },
     body: parameters,
   });
@@ -38,8 +38,10 @@ export async function getArticle() {
 
   const response = await fetch(getUrl, {
     method: "GET",
+    mode: "cors",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
+      "X-Sent-By": "javascript",
     },
   });
   if (!response.ok) {
@@ -60,8 +62,10 @@ export async function putArticle() {
 
   const response = await fetch(putUrl, {
     method: "PUT",
+    mode: "cors",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
+      "X-Sent-By": "javascript",
     },
     body: parameters,
   });
@@ -79,8 +83,10 @@ export async function deleteArticle() {
 
   const response = await fetch(deleteUrl, {
     method: "DELETE",
+    mode: "cors",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
+      "X-Sent-By": "javascript",
     },
   });
   if (!response.ok) {

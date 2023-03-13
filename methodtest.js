@@ -1,9 +1,3 @@
-const deleteUrl = "https://httpbin.org/delete";
-
-const postBtn = document.getElementById("postBtn");
-const getBtn = document.getElementById("getBtn");
-const putBtn = document.getElementById("putBtn");
-const deleteBtn = document.getElementById("deleteBtn");
 export const output = document.getElementById("response");
 
 const form = document.getElementById("form");
@@ -55,9 +49,9 @@ export async function putArticle() {
   date.value = currTime.toString();
   let formData = new FormData(form);
   let parameters = queryParameters(true, formData);
-  const getUrl = `https://httpbin.org/put`;
+  const putUrl = `https://httpbin.org/put`;
 
-  const response = await fetch(getUrl, {
+  const response = await fetch(putUrl, {
     method: "PUT",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -75,9 +69,9 @@ export async function putArticle() {
 export async function deleteArticle() {
   let formData = new FormData(form);
   let parameters = queryParameters(false, formData);
-  const getUrl = `https://httpbin.org/delete?${parameters}`;
+  const deleteUrl = `https://httpbin.org/delete?${parameters}`;
 
-  const response = await fetch(getUrl, {
+  const response = await fetch(deleteUrl, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",

@@ -3,17 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <title>Method Test</title>
+    <script type="module">
+      import {
+        output,
+        getArticle,
+        postArticle,
+        putArticle,
+        deleteArticle,
+      } from "./methodtest.js";
+
+      document
+        .getElementById("postBtn")
+        .addEventListener("click", async (e) => {
+          e.preventDefault();
+          output.innerHTML = "Fetching response...";
+          await postArticle();
+        });
+      document.getElementById("getBtn").addEventListener("click", async (e) => {
+        e.preventDefault();
+        output.innerHTML = "Fetching response...";
+        await getArticle();
+      });
+      document.getElementById("putBtn").addEventListener("click", async (e) => {
+        e.preventDefault();
+        output.innerHTML = "Fetching response...";
+        await putArticle();
+      });
+      document
+        .getElementById("deleteBtn")
+        .addEventListener("click", async (e) => {
+          e.preventDefault();
+          output.innerHTML = "Fetching response...";
+          await deleteArticle();
+        });
+    </script>
   </head>
   <body>
-    <form>
+    <form id="form">
       <fieldset>
-        <table id="form-table">
+        <table>
           <tr>
             <td class="label">
               <label for="id">ID: </label>
             </td>
             <td>
-              <input type="number" id="id" required />
+              <input type="number" id="id" name="id" />
             </td>
           </tr>
           <tr>
@@ -21,75 +55,26 @@
               <label for="article_name">Article Name:</label>
             </td>
             <td>
-              <input type="text" id="article_name" />
+              <input type="text" id="article_name" name="article_name" />
             </td>
           </tr>
           <tr>
             <td class="label">
-              <label for="article_body">Subject: </label>
+              <label for="article_body">Article Body: </label>
             </td>
             <td>
-              <textarea id="article_body"></textarea>
+              <textarea id="article_body" name="article_body"></textarea>
             </td>
           </tr>
-          <input hidden id="date" />
+          <input hidden id="date" name="date" />
         </table>
-        <button id="postBtn">Post</button>
-        <button id="getBtn">Get</button>
-        <button id="putBtn">Put</button>
-        <button id="deleteBtn">Delete</button>
+        <button id="postBtn" type="submit">Post</button>
+        <button id="getBtn" type="submit">Get</button>
+        <button id="putBtn" type="submit">Put</button>
+        <button id="deleteBtn" type="submit">Delete</button>
       </fieldset>
     </form>
     <hr />
-    <output id="response">No response yet.</output>
-    <script type="module">
-      window.addEventListener("DOMContentLoaded", init);
-
-      function init() {
-        let postBtn;
-        let getBtn;
-        let putBtn;
-        let deleteBtn;
-
-        postBtn = document
-          .getElementById("postBtn")
-          .addEventListener("click", postMethod);
-        getBtn = document
-          .getElementById("getBtn")
-          .addEventListener("click", getMethod);
-        putBtn = document
-          .getElementById("putBtn")
-          .addEventListener("click", putMethod);
-        deleteBtn = document
-          .getElementById("deleteBtn")
-          .addEventListener("click", deleteMethod);
-      }
-
-      function postMethod() {
-        let xhr = new XMLHttpRequest();
-
-        // forming the law of 3 request line method, URL, and optional async/sync flag
-        xhr.open("POST", "https://httpbin.org/post");
-
-        // // a header we could use on the server-side to determine if from JS or if from a form
-        // xhr.setRequestHeader('X-Sent-By','javascript');
-
-        // the standard encoding
-        xhr.setRequestHeader(
-          "Content-Type",
-          "application/x-www-form-urlencoded"
-        );
-
-        xhr.onload = function () {
-          // TODO: refactor this to read the JSON and display the message instead of the raw JSON
-
-          // how dangerous is it to just jam this content in here like this?
-          document.querySelector("output").innerHTML = xhr.responseText;
-        };
-
-        // note the creation of the message body manually and proper encoding here
-        xhr.send(`message=${encodeURIComponent(new Date())}`);
-      }
-    </script>
+    <output id="response" style="white-space: pre">No response yet.</output>
   </body>
 </html>

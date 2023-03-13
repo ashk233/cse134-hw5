@@ -1,3 +1,5 @@
+const deleteUrl = "https://httpbin.org/delete";
+
 const postBtn = document.getElementById("postBtn");
 const getBtn = document.getElementById("getBtn");
 const putBtn = document.getElementById("putBtn");
@@ -16,10 +18,8 @@ export async function postArticle() {
 
   const response = await fetch(postUrl, {
     method: "POST",
-    mode: "cors",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
-      "X-Sent-By": "javascript",
     },
     body: parameters,
   });
@@ -38,10 +38,8 @@ export async function getArticle() {
 
   const response = await fetch(getUrl, {
     method: "GET",
-    mode: "cors",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
-      "X-Sent-By": "javascript",
     },
   });
   if (!response.ok) {
@@ -55,17 +53,14 @@ export async function getArticle() {
 export async function putArticle() {
   let currTime = new Date();
   date.value = currTime.toString();
-  let id = document.getElementById("id").value;
   let formData = new FormData(form);
   let parameters = queryParameters(true, formData);
-  const putUrl = `https://httpbin.org/put/${id}`;
+  const getUrl = `https://httpbin.org/put`;
 
-  const response = await fetch(putUrl, {
+  const response = await fetch(getUrl, {
     method: "PUT",
-    mode: "cors",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
-      "X-Sent-By": "javascript",
     },
     body: parameters,
   });
@@ -78,15 +73,14 @@ export async function putArticle() {
 }
 
 export async function deleteArticle() {
-  let id = document.getElementById("id").value;
-  const deleteUrl = `https://httpbin.org/delete/${id}`;
+  let formData = new FormData(form);
+  let parameters = queryParameters(false, formData);
+  const getUrl = `https://httpbin.org/delete?${parameters}`;
 
-  const response = await fetch(deleteUrl, {
+  const response = await fetch(getUrl, {
     method: "DELETE",
-    mode: "cors",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
-      "X-Sent-By": "javascript",
     },
   });
   if (!response.ok) {
